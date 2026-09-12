@@ -216,7 +216,9 @@ export function LandingPage() {
             </Link>
           </div>
           <p className="text-xs text-muted-foreground">
-            A portfolio SaaS experience.
+            Designed &amp; developed by{" "}
+            <span className="font-semibold text-foreground">Ali Elhussein</span>{" "}
+            · Portfolio demo © 2026
           </p>
         </div>
       </footer>

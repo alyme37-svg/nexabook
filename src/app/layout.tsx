@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     template: "%s · NexaBook",
   },
   description: "A polished service booking and business management workspace.",
+  authors: [{ name: "Ali Elhussein" }],
+  creator: "Ali Elhussein",
+  publisher: "Ali Elhussein",
+  applicationName: "NexaBook",
 };
 
 export const viewport: Viewport = {

@@ -1,6 +1,7 @@
 {
   "name": "nexabook",
   "version": "0.1.0",
+  "author": "Ali Elhussein",
   "private": true,
   "scripts": {
     "dev": "next dev",
