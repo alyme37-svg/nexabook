@@ -503,11 +503,14 @@ export function BookingFlow({
                           setBookingError("");
                         }}
                         className={cn(
-                          "min-h-11 rounded-lg border bg-card px-3 text-sm font-semibold outline-none transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/25",
+                          "flex min-h-11 items-center justify-center gap-2 rounded-lg border bg-card px-3 text-sm font-semibold outline-none transition-colors hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/25",
                           time === slot &&
                             "border-primary bg-primary text-primary-foreground",
                         )}
                       >
+                        {time === slot ? (
+                          <Check className="size-4" aria-hidden="true" />
+                        ) : null}
                         {formatTime(
                           zonedDateTimeToIso(day, slot, settings.timezone),
                           settings.locale,
@@ -530,6 +533,17 @@ export function BookingFlow({
                     </p>
                   </div>
                 )}
+                <p
+                  className={cn(
+                    "mt-3 text-xs",
+                    time ? "font-medium text-primary" : "text-muted-foreground",
+                  )}
+                  aria-live="polite"
+                >
+                  {time
+                    ? `${formatTime(zonedDateTimeToIso(day, time, settings.timezone), settings.locale, settings.timezone)} selected — continue to review your booking.`
+                    : "Select one of the available times to continue."}
+                </p>
               </div>
             </div>
           ) : null}

@@ -88,20 +88,34 @@ export function DatePicker({
   function openCalendar() {
     if (disabled || !triggerRef.current) return;
     const rect = triggerRef.current.getBoundingClientRect();
-    const width = Math.min(320, window.innerWidth - 16);
+    const container =
+      triggerRef.current.closest<HTMLElement>('[role="dialog"]') ??
+      document.body;
+    const insideDialog = container !== document.body;
+    const bounds = insideDialog
+      ? container.getBoundingClientRect()
+      : {
+          left: 0,
+          top: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+    const width = Math.min(320, bounds.width - 16);
     const height = 362;
     const opensAbove =
       window.innerHeight - rect.bottom < height + 10 && rect.top > height;
+    const relativeLeft = rect.left - bounds.left;
+    const relativeTop = opensAbove
+      ? rect.top - bounds.top - height - 6
+      : rect.bottom - bounds.top + 6;
     setVisibleMonth(fromKey(value || min || toKey(new Date())));
     setPosition({
-      left: Math.max(8, Math.min(rect.left, window.innerWidth - width - 8)),
-      top: opensAbove ? Math.max(8, rect.top - height - 6) : rect.bottom + 6,
+      position: insideDialog ? "absolute" : "fixed",
+      left: Math.max(8, Math.min(relativeLeft, bounds.width - width - 8)),
+      top: Math.max(8, Math.min(relativeTop, bounds.height - height - 8)),
       width,
     });
-    setPortalContainer(
-      triggerRef.current.closest<HTMLElement>('[role="dialog"]') ??
-        document.body,
-    );
+    setPortalContainer(container);
     setOpen(true);
   }
 
@@ -140,7 +154,7 @@ export function DatePicker({
               ref={popoverRef}
               role="dialog"
               aria-label="Choose appointment date"
-              className="fixed z-[60] rounded-2xl border bg-popover p-3 text-popover-foreground shadow-float"
+              className="z-[60] rounded-2xl border bg-popover p-3 text-popover-foreground shadow-float"
               style={position}
               onKeyDown={(event) => {
                 if (event.key === "Escape") {
