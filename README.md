@@ -4,6 +4,8 @@ A polished, interactive booking and client-management SaaS demo built with Next.
 
 Designed and developed by **Ali Elhussein** as a portfolio project.
 
+**Live demo:** [nexabook-seven.vercel.app](https://nexabook-seven.vercel.app)
+
 ## Highlights
 
 - Dashboard with derived business metrics and activity
