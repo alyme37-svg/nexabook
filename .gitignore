@@ -9,4 +9,5 @@ out/
 Thumbs.db
 .playwright-cli/
 output/playwright/
+output/portfolio/
 .vercel/
