@@ -4,6 +4,7 @@ out/
 .env*
 !.env.example
 *.log
+*.tsbuildinfo
 .DS_Store
 Thumbs.db
 .playwright-cli/
